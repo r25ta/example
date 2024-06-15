@@ -1,0 +1,61 @@
+1- Create a GO Module
+
+Start a module using
+$ go mod init example.com/greetings
+
+
+***********************************************************************
+The command specifies that example.com/greetings should be replaced with ../greetings 
+for the purpose of locating the dependency. After you run the command, 
+the go.mod file in the hello directory should include a replace directive:
+
+$ go mod edit -replace example.com/greetings=../greetings
+
+**********************************************************************
+From the command prompt in the hello directory, 
+run the go mod tidy command to synchronize the example.com/hello module's dependencies,
+ adding those required by the code, but not yet tracked in the module.
+
+$ go mod tidy
+
+**************************************************************************************
+Sprintf formats according to a format specifier and returns the resulting string.
+
+func Sprintf (format string, a ...any) string
+
+***************************************************************************
+
+Go's built-in support for unit testing makes it easier to test as you go. Specifically,
+using naming conventions, Go's testing package, and the go test command, 
+you can quickly write and execute tests.
+
+Ending a file's name with _test.go tells the go test command that this file contains test functions.
+
+import "testing"
+
+$ go test
+
+$ go test -v
+
+******************************************************************************
+Compile and install the application
+
+Compile
+$ go build 
+
+Execute
+$ ./hello
+
+You can discover the install path by running the go list command, as in the following example:
+
+$ go list -f '{{.Target}}'
+
+As an alternative, if you already have a directory like $HOME/bin in your shell path and you'd like to install your Go programs there, you can change the install target by setting the GOBIN variable using the go env command:
+
+$ go env -w GOBIN=/path/to/your/bin
+
+Once you've updated the shell path, run the go install command to compile and install the package.
+$ go install
+
+Run your application by simply typing its name. To make this interesting, open a new command prompt and run the hello executable name in some other directory.
+$ hello
